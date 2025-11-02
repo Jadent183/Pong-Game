@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://ctyuy53oe2fxo"]
+
+[ext_resource type="Script" uid="uid://bbyq5i6igk1ix" path="res://Scripts/player_controller.gd" id="1_idj7w"]
+[ext_resource type="Script" uid="uid://bgxq1brc1na3q" path="res://Scripts/player_2.gd" id="1_kln2b"]
+[ext_resource type="Texture2D" uid="uid://dy5i64w0y83pd" path="res://Assets/Images/background.png" id="1_pbw6q"]
+[ext_resource type="Texture2D" uid="uid://00ci86lfsy3l" path="res://Assets/Images/player_spr.png" id="2_pbw6q"]
+[ext_resource type="Script" uid="uid://d0cxf04x0gplu" path="res://Scripts/ball.gd" id="4_rgh2o"]
+[ext_resource type="AudioStream" uid="uid://dbbe50a075h0a" path="res://Assets/Sounds/ping_pong_8bit_beeep.ogg" id="6_v1gob"]
+[ext_resource type="AudioStream" uid="uid://bsufcoq3tqed7" path="res://Assets/Sounds/ping_pong_8bit_plop.ogg" id="7_jw32o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idj7w"]
+size = Vector2(23, 130)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_rgh2o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgh2o"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(575, 325.00003)
+scale = Vector2(10.2265625, 5.984375)
+texture = ExtResource("1_pbw6q")
+
+[node name="Player1" type="CharacterBody2D" parent="."]
+position = Vector2(53, 310)
+script = ExtResource("1_idj7w")
+
+[node name="Player1HitBox" type="CollisionShape2D" parent="Player1"]
+visible = false
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_idj7w")
+
+[node name="Player1Sprite" type="Sprite2D" parent="Player1"]
+position = Vector2(-0.5, -1)
+texture = ExtResource("2_pbw6q")
+
+[node name="Player2" type="CharacterBody2D" parent="."]
+position = Vector2(1107, 307)
+script = ExtResource("1_kln2b")
+
+[node name="Player1HitBox" type="CollisionShape2D" parent="Player2"]
+visible = false
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_idj7w")
+
+[node name="Player1Sprite" type="Sprite2D" parent="Player2"]
+position = Vector2(-0.5, -1)
+scale = Vector2(-1, -1)
+texture = ExtResource("2_pbw6q")
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+position = Vector2(604, 307)
+velocity = Vector2(-387.2573, -100.15886)
+script = ExtResource("4_rgh2o")
+
+[node name="Ball_spr" type="Sprite2D" parent="Ball"]
+scale = Vector2(11, 11)
+texture = SubResource("CanvasTexture_rgh2o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+visible = false
+shape = SubResource("RectangleShape2D_rgh2o")
+
+[node name="Collision1_sfx" type="AudioStreamPlayer" parent="Ball"]
+stream = ExtResource("6_v1gob")
+
+[node name="Collision2_sfx" type="AudioStreamPlayer" parent="Ball"]
+stream = ExtResource("7_jw32o")
