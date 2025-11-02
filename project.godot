@@ -13,6 +13,8 @@ config_version=5
 config/name="pong"
 run/main_scene="uid://ctyuy53oe2fxo"
 config/features=PackedStringArray("4.5", "Mobile")
+boot_splash/image="uid://djefbkupbt0g1"
+config/icon="uid://cfbbcty8psh5p"
 
 [input]
 
